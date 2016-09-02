@@ -1,9 +1,5 @@
 # mg-rest-tad
-RESTful API to TAD predictions
-
-# mg-rest-hdf5
-
-Microservice RESTful API for the querying of HDF5 files that have been generated using the code from the mg-storage-hdf5 scripts
+Microservice RESTful API for the querying of a Cassandra db that had been generated using the code from the mg-process-fastq scripts
 
 # Requirements
 - Cassandra 3.7+

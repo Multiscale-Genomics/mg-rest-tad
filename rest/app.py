@@ -262,6 +262,11 @@ api.add_resource(GetResolutions, "/rest/v0.0/getTADs/<string:taxon_id>/<string:a
 api.add_resource(GetChromosomes, "/rest/v0.0/getTADs/<string:taxon_id>/<string:accession_id>/chromosomes", endpoint='chromosomes')
 
 #   List the TADs for a given region
+#   Options:
+#    - chr   - chromosome (string)
+#    - res   - resolution (int)
+#    - start - (int)
+#    - end   - (int)
 api.add_resource(GetTADs, "/rest/v0.0/getTADs/<string:taxon_id>/<string:accession_id>/tads", endpoint='values')
 
 

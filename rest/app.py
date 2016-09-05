@@ -217,33 +217,23 @@ class GetTADs(Resource):
                 "error" : "No start and/or end parameter provided"
             }
         
-        #return {
-        #    "chr"         : chr_id,
-        #    "start"       : start,
-        #    "end"         : end,
-        #    "resolution"  : resolution
-        #}
-        
         request_path = request.path
         rp = request_path.split("/")
         value_url = request.url_root + 'rest/' + str(rp[2]) + '/getValue/' + str(taxon_id)
         
         # Get the TADs
         cr = cassandra_reader()
-        cr.get_range(accession_id, resolution, chr_id, start, end)
-        
-        #app.logger.warn(x["log"])
+        x = cr.get_range(accession_id, resolution, chr_id, start, end)
         
         return {
             '_links': {
                 'self': request.url,
-                'parent': request.url_root + '/rest/' + str(rp[2]) + '/' + str(rp[3]) + '/' + str(taxon_id) + '/' + str(accession_id) + '/' + str(dataset) + '/' + str(resolution) + "/" + str(chr_id)
+                'parent': request.url_root + '/rest/' + str(rp[2]) + '/' + str(rp[3]) + '/' + str(taxon_id) + '/' + str(accession_id)
             },
             'resolution': resolution,
             'genome': accession_id,
-            'tad_count': len(x["results"]),
+            'tad_count': x["count"],
             'values': x["results"],
-            'log': x["log"]
         }
 
 

@@ -32,7 +32,7 @@ class cassandra_reader:
         cluster = Cluster()
         self.session = cluster.connect('tad_regions')
     
-    def get_range(self, accession_id, resolution, chr_id, start, end, value_url = '/rest/v0.0/getValue/9606'):
+    def get_range(self, accession_id, resolution, chr_id, start, end):
         """
         Get the interactions that happen within a defined region on a specific
         chromosome. Returns inter and intra interactions with the defined region.

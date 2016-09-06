@@ -12,6 +12,9 @@ Microservice RESTful API for the querying of a Cassandra db that had been genera
   - Flask-Restful
   - json
   - pytest
+  - cassandra
+  - elasticsearch
+  - MySQLdb
 
 # Installation
 ## Initialise

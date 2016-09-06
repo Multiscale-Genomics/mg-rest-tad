@@ -1,3 +1,4 @@
 *.pyc
 *.json
 .python-version
+my.cnf

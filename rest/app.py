@@ -18,7 +18,8 @@ from flask import Flask, make_response, request
 from flask_restful import Api, Resource
 
 from datasets import datasets
-from cassandra_reader import cassandra_reader
+#from cassandra_reader import cassandra_reader
+from mysql_reader import mysql_reader
 
 app = Flask(__name__)
 api = Api(app)
@@ -93,8 +94,6 @@ class GetAccession(Resource):
     """
     
     def get(self, taxon_id, accession_id):
-        #ds = datasets()
-        #accessions = ds.getAccessions(taxon_id)
         request_path = request.path
         rp = request_path.split("/")
         return {
@@ -208,7 +207,7 @@ class GetTADs(Resource):
     def get(self, taxon_id, accession_id):
         ds = datasets()
         resolutions = ds.getResolutions()
-        chromos = ds.getChromosomes(taxon_id, accession_id, resolutions[-1])
+        chromos = ds.getChromosomes(taxon_id, str(accession_id), resolutions[-1])
         chromosomes = [i[0] for i in chromos]
         
         error = False
@@ -238,8 +237,11 @@ class GetTADs(Resource):
         value_url = request.url_root + 'rest/' + str(rp[2]) + '/getValue/' + str(taxon_id)
         
         # Get the TADs
-        cr = cassandra_reader()
-        x = cr.get_range(accession_id, resolution, chr_id, start, end)
+        #cr = cassandra_reader()
+        #x = cr.get_range(accession_id, resolution, chr_id, start, end)
+        
+        mr = mysql_reader()
+        x = mr.get_range(accession_id, resolution, chr_id, start, end)
         
         return {
             '_links': {

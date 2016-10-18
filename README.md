@@ -19,7 +19,7 @@ Microservice RESTful API for the querying of a Cassandra db that had been genera
 # Installation
 ## Initialise
 ```
-pyenve virtualenv TADrest
+pyenv virtualenv TADrest
 
 cd rest
 ```
